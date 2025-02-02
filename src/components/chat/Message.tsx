@@ -27,15 +27,14 @@ const Message = ({ message }: MessageProps) => {
       >
         <ReactMarkdown
           components={{
-            code({ node, inline, className, children, ...props }) {
+            code({ className, children, ...props }) {
               const match = /language-(\w+)/.exec(className || '');
-              return !inline && match ? (
+              return match ? (
                 <SyntaxHighlighter
-                  style={atomDark}
                   language={match[1]}
+                  style={atomDark}
                   PreTag="div"
                   className="rounded-md"
-                  {...props}
                 >
                   {String(children).replace(/\n$/, '')}
                 </SyntaxHighlighter>

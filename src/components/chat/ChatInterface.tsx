@@ -21,21 +21,19 @@ const ChatInterface = () => {
     setIsLoading(true);
 
     try {
-      // Replace this with your actual API call
-      const response = await fetch('YOUR_API_ENDPOINT', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: content }),
-      });
+      // Mock API response for testing
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      const mockResponse = {
+        response: `This is a mock response with markdown:
+\`\`\`javascript
+console.log("Hello World!");
+\`\`\`
+And some **bold** text.`
+      };
 
-      if (!response.ok) throw new Error('Failed to get response');
-
-      const data = await response.json();
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: data.response,
+        content: mockResponse.response,
         sender: 'assistant',
         timestamp: new Date(),
       };
